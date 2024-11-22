@@ -26,6 +26,21 @@ h3 {
     gap: 15px;
 }
 
+.panier-item-prix {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.8em;
+}
+
+.panier-item-prix-total {
+    font-weight: bold;
+}
+
+.panier-item-prix p {
+    margin: 0;
+}
+
 .panier-item {
     display: flex;
     background-color: white;
@@ -74,4 +89,20 @@ h3 {
     padding: 20px;
     background-color: #f8f8f8;
     border-radius: 8px;
+}
+
+.delete-button {
+    background: none; 
+    border: none;
+    cursor: pointer;
+}
+
+.delete-button svg {
+    width: auto;
+    height: auto;
+    fill: black;
+}
+
+.delete-button:hover svg {
+    fill: rgb(95, 189, 189);
 }

@@ -5,9 +5,8 @@ export default function Produit({ detail, addProdPanier }){
     const handleAddToCart = () => {
         addProdPanier({
             nom: detail.nom,
-            prix: detail.prix,
+            prix: parseFloat(detail.prix),
             image: detail.image,
-            quantite: 1
         });
     };
 
