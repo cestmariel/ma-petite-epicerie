@@ -4,7 +4,7 @@
     object-fit: cover;
 }
 
-h2 {
+.nomProd {
     font-size: 1em;
     width: auto;
     font-weight: lighter;
@@ -40,7 +40,9 @@ h2 {
 
 .buttonPanier:hover {
     background-color: rgb(95, 189, 189);
+    padding: 0.5em 1em;
 }
+
 /******************************************************************/
 /**                       RESPONSIVE                             **/
 /******************************************************************/

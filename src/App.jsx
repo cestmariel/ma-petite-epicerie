@@ -8,11 +8,11 @@ import Panier from './components/Panier/Panier'
 function App() {
   let booleen = true
 
-  const [count, setCount] = useState(0)
-  const [list, setList] = useState([])
-  const [listFiltre, setListFiltre] = useState([])
-  const [categories, setCategories] = useState(['tous'])
-  const [panier, setPanier] = useState([])
+  const [count, setCount] = useState(0);
+  const [list, setList] = useState([]);
+  const [listFiltre, setListFiltre] = useState([]);
+  const [categories, setCategories] = useState(['tous']);
+  const [panier, setPanier] = useState([]);
 
   useEffect(() => {
     fetch('https://api.npoint.io/68bf5db20a3c236f68ed')
@@ -22,7 +22,6 @@ function App() {
         setListFiltre(data);
         const uniqueCategories = [...new Set(data.map(item => item.categorie.nom))];
         setCategories(['tous', ...uniqueCategories]);
-        setPanier(data);
       })
   }, [])
 
@@ -33,8 +32,37 @@ function App() {
 
   // Bouton : ajouter le produit au panier
   const addProdPanier = (product) => {
-    setPanier([...panier, {...product}]);
-  }
+    setPanier(prevPanier => {
+      const existingProduct = prevPanier.find(item => item.nom === product.nom);
+      if (existingProduct) {
+        // Si le produit existe déjà, augmentez sa quantité
+        return prevPanier.map(item =>
+          item.nom === product.nom
+            ? { ...item, quantite: item.quantite + 1 }
+            : item
+        );
+      } else {
+        // Sinon, ajoutez le nouveau produit
+        return [...prevPanier, {...product}];
+      }
+    });
+  };
+
+  // Pour gérer les changements de quantité 
+  const handleQuantiteChange = (nom, change) => {
+    setPanier(prevPanier => {
+      return prevPanier.map(item => 
+        item.nom === nom 
+          ? { ...item, quantite: Math.max(1, (item.quantite || 1) + change) }
+          : item
+      ).filter(item => item.quantite > 0);
+    });
+  };
+  
+  // Pour gérer la suppression du produit dans le panier
+  const handleRemove = (nom) => {
+    setPanier(prevPanier => prevPanier.filter(item => item.nom !== nom));
+  };
 
   // Permettre la recherche de produits
   const filtrerProduits = useCallback((cat, searchText = '') => {
@@ -50,7 +78,7 @@ function App() {
     setListFiltre(produitsFiltres);
   }, [list]);
 
-  // Filtrer les produits selon leur catégorie
+  // Pour filtrer les produits selon leur catégorie
   const handleFilterTextChange = useCallback((newFilterText) => {
     filtrerProduits('tous', newFilterText);
   }, [filtrerProduits]);
@@ -74,14 +102,20 @@ function App() {
             ))}
           </div>
           <section className="d-flex" id="produits">
-            {listFiltre.map((elem, index) =>
-              <Produit key={index} detail={elem} addProdPanier={addProdPanier}/>
-            )}
+              {listFiltre.map((elem) =>
+                <Produit key={elem.id} detail={elem} addProdPanier={addProdPanier}/>
+              )}
           </section>
         </div>
-        <div className="panier">
-            <Panier produits={panier} actionPanier={addProdPanier}/>
-        </div>
+        {panier.length > 0 && (
+          <div className="panier-container">
+            <Panier 
+              produits={panier} 
+              onQuantiteChange={handleQuantiteChange}
+              onRemove={handleRemove}
+            />
+          </div>
+        )}
       </section>
     </>
   )

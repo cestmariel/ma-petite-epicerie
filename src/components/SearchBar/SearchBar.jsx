@@ -14,6 +14,7 @@ function SearchBar({ onFilterTextChange }) {
     <form>
       <input 
         type="text" 
+        class="searchField"
         value={localFilterText} 
         onChange={handleChange} 
         placeholder="Rechercher un produit..."

@@ -1,3 +1,77 @@
-.pad {
-    padding: 1em;
+h2 {
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+.panier {
+    width: 300px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.panier h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.panier-liste {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.panier-item {
+    display: flex;
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.panier-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.panier-item-details {
+    flex-grow: 1;
+}
+
+.panier-item-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.panier-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.panier-item-actions button {
+    padding: 2px 5px;
+    font-size: 14px;
+}
+
+.panier-total {
+    margin-top: 20px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.panier-vide {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
 }
