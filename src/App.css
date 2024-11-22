@@ -1,0 +1,54 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h1{
+    font-size: 2em;
+}
+
+.container {
+    padding: 2em;
+}
+
+.triProd {
+    display: flex;
+    justify-content: right;
+    gap: 1em;
+    margin-top: 1em;
+}
+
+.produit {
+    border: 1px solid grey;
+}
+
+#produits {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin-top: 2em;
+}
+
+.d-flex {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.logo {
+    width: 3em;
+}
+
+.logoName {
+    margin-right: 2em;
+}
+
+
+/******************************************************************/
+/**                       RESPONSIVE                             **/
+/******************************************************************/
+
+@media screen and (max-width:576px){
+    .triProd {
+        flex-wrap: wrap;
+    }
+}
