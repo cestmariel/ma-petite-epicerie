@@ -36,13 +36,9 @@ function App() {
       const existingProduct = prevPanier.find(item => item.nom === product.nom);
       if (existingProduct) {
         // Si le produit existe déjà, augmenter sa quantité
-        return prevPanier.map(item =>
-          item.nom === product.nom
-          ? { ...item, quantite: (item.quantite || 1) + 1 }
-            : item
-        );
+        return prevPanier.map(item => item.nom === product.nom ? { ...item, quantite: item.quantite + 1 } : item );
       } else {
-        // Sinon, ajouter le nouveau produit
+        // Sinon, ajouter le nouveau produit avec une quantité de 1
         return [...prevPanier, {...product, quantite: 1 }];
       }
     });

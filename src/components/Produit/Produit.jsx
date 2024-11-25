@@ -5,12 +5,13 @@ import { useState } from 'react';
 export default function Produit({ detail, addProdPanier, quantite, onQuantiteChange }) {
 //   const [quantite, setQuantite] = useState(0);
 
-  const handleAddToCart = () => {
+const handleAddToCart = () => {
     if (quantite === 0) {
-        addProdPanier({ nom: detail.nom, prix: parseFloat(detail.prix), image: detail.image });
-      }
+      addProdPanier({ nom: detail.nom, prix: parseFloat(detail.prix), image: detail.image });
+    } else {
       onQuantiteChange(detail.nom, 1);
-    };
+    }
+  };
 
   const handleIncrease = () => {
     onQuantiteChange(detail.nom, 1);
