@@ -35,14 +35,14 @@ function App() {
     setPanier(prevPanier => {
       const existingProduct = prevPanier.find(item => item.nom === product.nom);
       if (existingProduct) {
-        // Si le produit existe déjà, augmentez sa quantité
+        // Si le produit existe déjà, augmenter sa quantité
         return prevPanier.map(item =>
           item.nom === product.nom
           ? { ...item, quantite: (item.quantite || 1) + 1 }
             : item
         );
       } else {
-        // Sinon, ajoutez le nouveau produit
+        // Sinon, ajouter le nouveau produit
         return [...prevPanier, {...product, quantite: 1 }];
       }
     });
@@ -53,7 +53,7 @@ function App() {
     setPanier(prevPanier => {
       return prevPanier.map(item => 
         item.nom === nom 
-          ? { ...item, quantite: Math.max(1, item.quantite + change) }
+          ? { ...item, quantite: Math.max(0, item.quantite + change) }
           : item
       ).filter(item => item.quantite > 0);
     });
@@ -92,8 +92,6 @@ function App() {
             <h1 className='logoName'>Ma petite épicerie</h1>
             <SearchBar onFilterTextChange={handleFilterTextChange} />
           </div>
-          {/* {booleen && <Button count={count} action={handleClick} />}
-          <Button count={count} action={handleClick} /> */}
           <div className="triProd">
             {categories.map((cat, index) => (
               <button key={index} onClick={() => filtrerProduits(cat)}>
@@ -103,7 +101,7 @@ function App() {
           </div>
           <section className="d-flex" id="produits">
               {listFiltre.map((elem) =>
-                <Produit key={elem.id} detail={elem} addProdPanier={addProdPanier}/>
+                <Produit key={elem.id} detail={elem} addProdPanier={addProdPanier} quantite={panier.find(p => p.nom === elem.nom)?.quantite || 0} onQuantiteChange={handleQuantiteChange}/>
               )}
           </section>
         </div>

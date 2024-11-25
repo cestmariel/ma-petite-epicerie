@@ -43,6 +43,18 @@
     padding: 0.5em 1em;
 }
 
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.quantity-controls button {
+    padding: 2px 5px;
+    font-size: 14px;
+}
+
 /******************************************************************/
 /**                       RESPONSIVE                             **/
 /******************************************************************/
