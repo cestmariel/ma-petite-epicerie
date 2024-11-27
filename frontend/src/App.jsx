@@ -95,8 +95,8 @@ function App() {
             ))}
           </div>
           <section className="d-flex" id="produits">
-              {listFiltre.map((elem) =>
-                <Produit key={elem.id} detail={elem} addProdPanier={addProdPanier} quantite={panier.find(p => p.nom === elem.nom)?.quantite || 0} onQuantiteChange={handleQuantiteChange}/>
+              {listFiltre.map((elem, index) =>
+                <Produit key={index} detail={elem} addProdPanier={addProdPanier} quantite={panier.find(p => p.nom === elem.nom)?.quantite || 0} onQuantiteChange={handleQuantiteChange}/>
               )}
           </section>
         </div>
