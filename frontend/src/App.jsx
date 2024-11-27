@@ -1,12 +1,10 @@
 import { useState, useEffect, useCallback } from 'react'
 import './App.css'
-import { Button } from './components/Button/Button'
 import Produit from './components/Produit/Produit'
 import SearchBar from './components/SearchBar/SearchBar'
 import Panier from './components/Panier/Panier'
 
 function App() {
-  let booleen = true
 
   const [count, setCount] = useState(0);
   const [list, setList] = useState([]);
@@ -15,7 +13,7 @@ function App() {
   const [panier, setPanier] = useState([]);
 
   useEffect(() => {
-    fetch('https://api.npoint.io/68bf5db20a3c236f68ed')
+    fetch('http://localhost:5000/api/produits')
       .then(response => response.json())
       .then(data => {
         setList(data);
@@ -23,6 +21,7 @@ function App() {
         const uniqueCategories = [...new Set(data.map(item => item.categorie.nom))];
         setCategories(['tous', ...uniqueCategories]);
       })
+      .catch(error => console.error('Erreur lors de la récupération des produits:', error));
   }, [])
 
   // Bouton : ajouter 1 au clic

@@ -12,4 +12,16 @@ router.get('/', async (req, res) => {
     }
 })
 
+
+// Ajouter un produit
+router.post('/', async (req, res) => {
+    const produit = new Produit(req.body)
+    try {
+        const newProduit = await produit.create();
+        res.status(201).json(newProduit);
+    } catch(err) {
+        res.status(400).json({ message: err.message });
+    }
+})
+
 module.exports = router;

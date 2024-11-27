@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const ProduitRoutes = require('/routes/ProduitRoutes');
+const ProduitRoutes = require('./routes/ProduitRoutes');
 
 dotenv.config(); // on précise que l'on va utiliser un fichier .env pour les variables d'environnement auxquelles on pourra accéder par la suite avec process.env
 
