@@ -37,7 +37,7 @@ export default function Panier({ produits, onQuantiteChange, onRemove }){
                 ))}
             </div>
             <div className="panier-total">
-                Total: {produits.reduce((total, produit) => total + produit.prix * produit.quantite, 0).toFixed(2)} €
+                Total : {produits.reduce((total, produit) => total + produit.prix * produit.quantite, 0).toFixed(2)} €
             </div>
         </div>
     );
